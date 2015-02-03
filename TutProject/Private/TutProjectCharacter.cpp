@@ -187,5 +187,4 @@ void ATutProjectCharacter::Tick(float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
     GetCharacterMovement()->MaxWalkSpeed = SpeedFactor * PowerLevel + BaseSpeed;
-    //CharacterMovement->MaxWalkSpeed = SpeedFactor * PowerLevel + BaseSpeed;
 }
