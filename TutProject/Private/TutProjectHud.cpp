@@ -29,8 +29,11 @@ void ATutProjectHud::DrawHUD()
     
     // Get the character adn print it's power level
     ATutProjectCharacter* MyCharacter = Cast<ATutProjectCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
-    FString PowerLevelString = FString::Printf(TEXT("%10.1f"), FMath::Abs(MyCharacter->PowerLevel));
-    DrawText(PowerLevelString, FColor::White, 50, 50, HUDFont);
+    if (MyCharacter != NULL)
+    {
+        FString PowerLevelString = FString::Printf(TEXT("%10.1f"), FMath::Abs(MyCharacter->PowerLevel));
+        DrawText(PowerLevelString, FColor::White, 50, 50, HUDFont);
+    }
     
     ATutProjectGameMode* MyGameMode = Cast<ATutProjectGameMode>(UGameplayStatics::GetGameMode(this));
     

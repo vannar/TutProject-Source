@@ -21,22 +21,29 @@ ATutProjectGameMode::ATutProjectGameMode(const FObjectInitializer& ObjectInitial
     // base decay Rate
     DecayRate = 0.25f;
     
-    
 }
 
 void ATutProjectGameMode::Tick(float DeltaSeconds)
 {
     ATutProjectCharacter* MyCharacter = Cast<ATutProjectCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
     
-    // if the character still has power
-    if (MyCharacter->PowerLevel > 0.05)
+    if (MyCharacter != NULL)
     {
-        // decrease the characters power
-        MyCharacter->PowerLevel = FMath::FInterpTo(MyCharacter->PowerLevel, 0.f, DeltaSeconds, DecayRate);
+        // if the character still has power
+        if (MyCharacter->PowerLevel > 0.05)
+        {
+            // decrease the characters power
+            //MyCharacter->PowerLevel = FMath::FInterpTo(MyCharacter->PowerLevel, 0.f, DeltaSeconds, DecayRate);
+        }
+        else
+        {
+            SetCurrentState(ETutProjectPlayState::EGameOver);
+        }
     }
     else
     {
-        SetCurrentState(ETutProjectPlayState::EGameOver);
+        RestartGame();
+        //ResetLevel();
     }
 }
 
